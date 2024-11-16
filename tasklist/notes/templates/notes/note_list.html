@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes List</title>
+    <link href="{% static 'notes/css/note_list.css' %}" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/nirmala" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'notes/img/Simple_logo.png' %}" type="image/x-icon">
+
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="user-info">
+            <h1>Account</h1>
+            <p>Nickname: {{ user.username }}</p>
+            
+            <form method="POST" action="{% url 'notes:note_create' %}">
+                {% csrf_token %}
+                <button type="submit" class="create-note-btn">Create Note</button> <!-- Використовуємо кнопку замість <p> -->
+            </form>
+            
+
+            
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="create-note-btn">Logout</button> <!-- Використовуємо кнопку замість <p> -->
+            </form>
+        </div>
+
+        {% if form.errors %}
+        <div class="error-messages">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    </div>
+
+    <div class="content">
+        {% if notes %}
+        <h2>Notes List</h2>
+            {% for note in notes %}
+                <a class="note-item" href="{% url 'notes:note_detail' note.pk %}">{{ note.title }}</a> <!-- Посилання на деталі нотатки -->
+            {% endfor %}
+        {% else %}
+            <p class="no-notes">No notes available</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

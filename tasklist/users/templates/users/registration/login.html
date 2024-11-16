@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="{% static 'users/css/login.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'users/img/Simple_logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-fields">
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Sign in</button>
+        </form>
+
+        <p>Don't have an account? <a href="{% url 'users:register' %}">Registration</a></p>
+
+        {% if form.errors %}
+        <div class="error-messages">
+            {% for field, errors in form.errors.items %}
+                <p>{{ errors|join:", " }}</p>
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tasks</title>
+    <link href="{% static 'notes/css/home.css' %}" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/nirmala" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'notes/img/Simple_logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <div>
+        <h1>Simple Tasks</h1>
+        <div class="navigate">
+            <a href="{% url 'login' %}">Sign in</a> 
+            <a href="{% url 'users:register' %}">Sign up</a> 
+        </div>
+    </div>
+    
+    
+    
+    
+</body>
+</html>

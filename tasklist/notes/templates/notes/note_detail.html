@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ note.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'notes/img/Simple_logo.png' %}" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .note-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #333333;
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #d4e6f1;
+        }
+
+        .note-content {
+            margin: 20px 0;
+            padding: 15px;
+            font-size: 1em;
+            color: #555555;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            line-height: 1.5;
+        }
+
+        .meta-info {
+            font-size: 0.9em;
+            color: #888888;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn:first-child{
+            margin-left:0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="note-container">
+        <h1>{{ note.title }}</h1> <!-- Заголовок нотатки -->
+        <div class="note-content">{{ note.content }}</div> <!-- Текст нотатки -->
+        <p class="meta-info">Created at: {{ note.created_at }}</p>
+        <p class="meta-info">Updated at: {{ note.updated_at }}</p>
+
+        <div class="btn-container">
+            <!-- Посилання для редагування -->
+            <a href="{% url 'notes:note_update' note.pk %}" class="btn">Edit</a>
+
+            <!-- Кнопка видалення -->
+            <form action="{% url 'notes:note_delete' note.pk %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-delete">Delete</button>
+            </form>
+
+            <!-- Посилання повернення до списку -->
+            <a href="{% url 'notes:note_list' %}" class="btn">Back</a>
+        </div>
+    </div>
+</body>
+</html>

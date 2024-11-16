@@ -1,0 +1,145 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+    background-color: #f4f4f4;
+}
+a {
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 5px;
+}
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 2px solid #ddd;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar h1 {
+    text-align: center;
+    
+    margin-bottom: 20px;
+    
+    font-size: 2.5em;
+    color: #333;
+}
+
+.note-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 20%;
+    color: #333;
+    background-color: white;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.note-item a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 1.1em;
+}
+
+.note-item:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.content h2 {
+    font-size: 2.5em;
+    color: #333;
+}
+
+.user-info {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.user-info p {
+    font-size: 1.1em;
+}
+
+.create-note-btn, .logout-btn {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.create-note-btn:hover, .logout-btn:hover {
+    background-color: #2980b9;
+}
+
+.error-messages {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+
+
+/* Загальний фон модального вікна */
+.modal {
+    display: none; /* Приховуємо модальне вікно за замовчуванням */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Темний фон */
+}
+
+/* Вміст модального вікна */
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%; /* Ширина модального вікна */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Кнопка закриття */
+.close {
+    
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+
+.no-notes {
+    font-size: 1.5em;
+    color: #555555;
+    margin-top: 20px;
+}
